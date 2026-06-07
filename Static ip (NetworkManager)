@@ -1,0 +1,9 @@
+#check if NetworkManager controls network adapter and record connection name
+sudo nmcli device status
+
+#set static ip for network adapter using recorded connectio name
+sudo nmcli connection modify "connection name" \ipv4.addresses x.x.x.x/x \ipv4.gateway x.x.x.x \ipv4.dns "x.x.x.x x.x.x.x" \ipv4.method manual
+
+#restart network manager
+sudo nmcli connection down "connection name"
+sudo nmcli connection up "connection name"
