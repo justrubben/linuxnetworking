@@ -7,12 +7,15 @@ sudo networkctl status adaptername
 #edit current networkfile or create one if there is none listed
 sudo nano /usr/lib/systemd/network/20-wired.network
 
-#type into file (network configurations will change if its a static ip)
+#type into file (network configurations will change if its DHCP)
 [Match]
 Name=adaptername
 
 [Network]
-DHCP=yes
+Address=x.x.x.x/x
+Gateway=x.x.x.x
+DNS=x.x.x.x
+DNS=x.x.x.x
 
 #restart network manager
 sudo systemctl restart systemd-networkd
