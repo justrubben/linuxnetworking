@@ -21,5 +21,11 @@ DHCP=yes
 #restart network network manager
 sudo systemctl restart systemd-networkd
 
+#make sure systemd-networkd manages network adapter
+sudo networkctl status adaptername
+
+#check ip address
+ifconfig
+
 #optional: disable NetworkManager
 sudo systemctl disbale --now NetworkManager
