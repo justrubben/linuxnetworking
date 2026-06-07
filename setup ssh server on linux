@@ -1,0 +1,25 @@
+#update and upgrade system
+sudo apt update && upgrade
+
+#install ssh server and ufw (firewall)
+sudo apt install openssh-server
+sudo apt install ufw
+
+#start and enable ssh server (enabling automatically starts server upon boot)
+sudo systemctl start ssh
+sudo systemctl enable ssh
+
+#start & enable ufw
+sudo ufw enable
+sudo systemctl enable ufw
+
+#allow ufw
+sudo ufw allow ssh
+
+#set port rule
+sudo ufw allow 22/tcp
+sudo ufw allow 22/udp
+
+#check if ssh is active
+sudo systemctl status ssh
+
