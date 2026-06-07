@@ -1,0 +1,25 @@
+#enable systemd-networkd
+sudo systemctl enable systemd-networkd
+sudo systemctl start systemd-networkd
+
+#find current ip and adapter name
+ifconfig
+
+#find if theres config file to edit or create one
+sudo networkctl status interfacename
+
+#create or edit config file
+sudo nano /etc/systemd/network/20-wired.network
+
+#type into config file
+[Match]
+Name=interfacename
+
+[Network]
+DHCP=yes
+
+#restart network network manager
+sudo systemctl restart systemd-networkd
+
+#optional: disable NetworkManager
+sudo systemctl disbale --now NetworkManager
