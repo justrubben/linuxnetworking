@@ -1,3 +1,6 @@
+#check current ip
+ifconfig
+
 #check if NetworkManager controls network adapter and record connection name
 sudo nmcli device status
 
@@ -7,3 +10,6 @@ sudo nmcli connection modify "connection name" \ipv4.addresses x.x.x.x/x \ipv4.g
 #restart network manager
 sudo nmcli connection down "connection name"
 sudo nmcli connection up "connection name"
+
+#check static ip
+ifconfig
