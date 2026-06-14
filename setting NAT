@@ -1,0 +1,2 @@
+#setting NAT using iptables
+sudo iptables -t nat -A POSTROUTING -o etho -j MASQUERADE
