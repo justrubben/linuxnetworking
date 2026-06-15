@@ -1,0 +1,36 @@
+#set up dnsmasq by first backing up existing config file
+ sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.backup
+ 
+#create fresh config file
+ sudo nano /etc/dnsmasq.conf
+
+#add
+ #interface to listen on
+ interface=wifiadapter
+
+ #DHCP range for wificlients
+ dhcp-range=x.x.x.x,x.x.x.x,255.255.255.0,24
+
+ #default gateway(its own ip address)
+ dhcp-option=x,x.x.x.x
+
+ #DNS server to give clients
+ dhcp-option=x,x.x.x.x,x.x.x.x
+
+ #never forward plain domain names
+ domain-needed
+
+ #never forward addresses
+ bogus-priv
+
+#start dnsmasq
+ sudo systemctl start dnsmasq
+
+#IF FAILED TO START DNSMASQ due to port 53 being used(most likey networkd-resolved): check what serive is using port 53
+ #sudo ss -tulnp | grep :53
+ #disable and stop:sudo systemctl stop systemd-resolved
+                   sudo systemctl disable systemd-resolved
+ #then start dnsmasq
+
+#verify
+ sudo systemctl status dnsmasq
