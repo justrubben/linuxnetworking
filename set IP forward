@@ -1,0 +1,14 @@
+#create IP forward file
+ sudo nano /etc/sysctl.d/99-ipforward.conf
+ 
+#add
+ net.ipv4.ip_forward = 1
+
+#Apply the configuration
+ sudo sysctl --system
+
+#Verify
+ sysctl net.ipv4.ip_forward
+
+#it should display
+ net.ipv4.ip_forward = 1
