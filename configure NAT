@@ -1,0 +1,13 @@
+#setup NAT with itable rules
+ sudo iptables -t net -A POSTROUTING -o ethernetadapter -j MASQUARADE
+ sudo iptables -A FORWARD -i wifiadapter -o ethernetadapter -J ACCEPT
+ sudo iptables -A FORWARD -i ethernetadapter -o wifiadapter -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#install iptables-persistent
+ sudo apt install iptables-persistent
+
+#verify rules saved
+ sudo cat /etc/iptables/rules.v4
+
+#save rules
+sudo netfilter-persistent save
