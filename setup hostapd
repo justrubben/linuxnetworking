@@ -1,0 +1,46 @@
+#install hostapd
+ sudo apt install hostapd
+
+#stop hostapd
+ sudo systemctl stop hostapd
+
+#Identify your wireless interface
+ ifconfig
+
+#Create a hostapd configuration
+ sudo nano /etc/hostapd/hostapd.conf
+
+#add and save
+ interface=wirelessadapter
+ driver=nl80211
+
+ ssid=choosewifiname
+
+ hw_mode=g
+ channel=6
+
+ country_code=US
+
+ wmm_enabled=1
+
+ auth_algs=1
+ ignore_broadcast_ssid=0
+
+ wpa=2
+ wpa_passphrase=choosewifipassword
+ wpa_key_mgmt=WPA-PSK
+ rsn_pairwise=CCMP
+
+#create file to tell hostapd where the config is and save
+ sudo nano /etc/default/hostapd
+
+#add
+ DAEMON_CONF="/etc/hostapd/hostapd.conf"
+
+#enable and start hostapd
+ sudo systemctl unmask hostapd
+ sudo systemctl enable hostapd
+ sudo systemctl start hostapd
+
+#verify its running
+ sudo systemctl status hostapd
