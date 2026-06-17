@@ -1,0 +1,13 @@
+#check if config file exists
+ ls -la /etc/resolv.conf
+
+#check status of resolve
+ systemctl status systemd-resolved
+
+#if dead/inactive, active it
+ sudo systemctl enable systemd-resolved --now
+ sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+ sudo systemd systemctl restart NetworkManager
+
+#verify
+ cat /etc/resolv.conf
