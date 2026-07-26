@@ -1,0 +1,11 @@
+#linux caonnot upgrade due to process is stuck on yes/no prompt 
+waiting for cache lock: could not lock/var/lib/dpkg/lock-frontend. It is held by process 22446 (apt-get)
+
+
+
+#fix
+sudo kill -9 22446
+sudo rm -f /var/lib/dpkg/lock-frontend
+sudo rm -f /var/lib/dpkg/lock
+sudo rm -f /var/cache/apt/archives/lock
+sudo dpkg --configure -a
