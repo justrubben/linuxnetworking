@@ -9,7 +9,7 @@
  sudo nano /etc/apt/sources.list.d/virtualbox.list
 
 #add
- deb [arch=amd64 signed-by=/etc/apt/keyrings/oracle-virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian noble contrib
+ deb [arch=amd64 signed-by=/etc/apt/keyrings/oracle-virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian noble contribute
 
 #update system again
  sudo apt update
