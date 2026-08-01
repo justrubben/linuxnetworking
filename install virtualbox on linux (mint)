@@ -1,0 +1,31 @@
+Option 1 this download is more stable and easier to manage/update
+
+#update
+sudo apt update
+
+#Install VirtualBox
+sudo apt install virtualbox
+
+#launch it on terminal
+virtualbox
+
+
+Option 2: this Installs the latest version from Oracle but more steps and manually have to update
+
+#manually add the Oracle repository (replace noble with your Ubuntu base codename if necessary):
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian noble contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+
+#Import Oracle's public key (the download page provides the current instructions):
+wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor | sudo tee /usr/share/keyrings/oracle-virtualbox.gpg > /dev/null
+
+#Update and install virtualbox with latest release:
+sudo apt update
+sudo apt install virtualbox-7.2
+
+#Install the Extension Pack (optional) either downloaded .vbox-extpack file from website or install it from the command line:
+sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-*.vbox-extpack
+
+#Verify the installation
+VBoxManage --version
+
+If your computer uses Secure Boot, VirtualBox's kernel modules may not load automatically. During installation, you may be prompted to enroll a Machine Owner Key (MOK). After rebooting, complete the MOK enrollment if prompted. If VirtualBox reports that kernel drivers are unavailable, you may need to sign the modules or temporarily disable Secure Boot.
